@@ -2,6 +2,9 @@
 name: MLOps Pipeline
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       run_all:
