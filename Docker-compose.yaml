@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  fastapi:
+    image: deb82/fastapi:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    version: '3.8'
+
+    services:
+      fastapi:
+        image: initcron/fastapi:dev
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "8000:8000"
+        # Optional: mount your local api directory for development
+        # volumes:
+        #   - ./src/api:/app
+
+      streamlit:
+        image: initcron/streamlit:dev
+        build:
+          context: ./streamlit_app
+          dockerfile: Dockerfile
+        ports:
+          - "8501:8501"
+        environment:
+          API_URL: http://fastapi:8000
+        depends_on:
+          - fastapi
+        # Optional: mount your local streamlit app for development
+        # volumes:
+        #   - ./streamlit_app:/app

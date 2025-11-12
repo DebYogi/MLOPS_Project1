@@ -1,0 +1,16 @@
+# model_config.yaml
+model:
+  name: "house_price_predictor"
+  best_model: "LinearRegression"
+  target_variable: "price"
+
+  parameters:
+    fit_intercept: true
+    positive: false    # optional; ensures only non-negative coefficients
+    n_jobs: 1
+
+metadata:
+  description: "Linear Regression baseline model to predict house prices. Simple, fast baseline."
+  author: "your-name-or-team"
+  dataset_notes: "Expect all features except 'price' to be numeric and preprocessed (no NaNs)."
+  date_created: "2025-11-11"

@@ -1,0 +1,69 @@
+# model_config.yaml
+# Configuration used by your training script.
+# The script expects `config['model']` to contain at least:
+#   - name: a human readable model name used in MLflow Model Registry
+#   - best_model: one of ['LinearRegression','RandomForest','GradientBoosting','XGBoost']
+#   - target_variable: the column name in your CSV to predict
+#   - parameters: dictionary of keyword args passed to the model constructor
+
+model:
+  # Human readable name for the registered model and MLflow experiment
+  name: "house_price_predictor"
+
+  # Which algorithm to instantiate. Must match a key in get_model_instance
+  # Options: LinearRegression, RandomForest, GradientBoosting, XGBoost
+  best_model: "LinearRegression"
+
+  # Target column in your processed CSV dataset
+  target_variable: "price"
+
+  # Hyperparameters passed directly to the model constructor.
+  # Examples provided for supported estimators. Remove/modify keys as needed.
+  parameters:
+    # Example XGBoost parameters (xgb.XGBRegressor)
+    # See XGBoost docs for full parameter list; common ones shown here.
+    n_estimators: 500
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    objective: "reg:squarederror"
+    random_state: 42
+    verbosity: 1
+
+# Optional: metadata section (the script doesn't require this but it's useful)
+# You can include extra information like training notes, expected features, or author info.
+metadata:
+  description: "XGBoost model to predict house prices. Trained on processed dataset."
+  author: "your-name-or-team"
+  dataset_notes: "Expect all features except 'price' to be numeric and preprocessed (no NaNs)."
+  date_created: "2025-11-10"
+
+# Optional example alternatives
+# If you want to try different algorithms, switch `best_model` and use corresponding params:
+#
+# Example for RandomForest:
+# model:
+#   best_model: "RandomForest"
+#   parameters:
+#     n_estimators: 200
+#     max_depth: 20
+#     min_samples_split: 2
+#     min_samples_leaf: 1
+#     random_state: 42
+#
+# Example for GradientBoosting:
+# model:
+#   best_model: "GradientBoosting"
+#   parameters:
+#     n_estimators: 300
+#     learning_rate: 0.1
+#     max_depth: 3
+#     random_state: 42
+#
+# Example for LinearRegression (few/no hyperparams needed):
+# model:
+#   best_model: "LinearRegression"
+#   parameters:
+#     fit_intercept: true
+#     normalize: false   # note: scikit-learn may deprecate this depending on version
