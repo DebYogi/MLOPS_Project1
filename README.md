@@ -33,11 +33,11 @@ house-price-predictor/
 
 To begin, ensure the following tools are installed on your system:
 
-- [Python 3.11](https://www.python.org/downloads/)
+- [Python 3.12](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/)
 - [Visual Studio Code](https://code.visualstudio.com/) or your preferred editor
 - [UV – Python package and environment manager](https://github.com/astral-sh/uv)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) **or** [Podman Desktop](https://podman-desktop.io/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) 
 
 ---
 
@@ -78,28 +78,11 @@ docker compose -f mlflow-docker-compose.yml up -d
 docker compose ps
 ```
 
-> 🐧 **Using Podman?** Use this instead:
-
-```bash
-podman compose -f mlflow-docker-compose.yml up -d
-podman compose ps
-```
-
 Access the MLflow UI at [http://localhost:5555](http://localhost:5555)
 
 ---
 
-## 📒 Using JupyterLab (Optional)
 
-If you prefer an interactive experience, launch JupyterLab with:
-
-```bash
-uv python -m jupyterlab
-# or
-python -m jupyterlab
-```
-
----
 
 ## 🔁 Model Workflow
 
@@ -148,6 +131,8 @@ Once you have launched both the apps, you should be able to access streamlit web
 You could also test predictions with FastAPI directly using 
 
 ```
+Change the port number based on configured port for curl command.
+
 curl -X POST "http://localhost:32771/predict" \
 -H "Content-Type: application/json" \
 -d '{
